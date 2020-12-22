@@ -706,8 +706,8 @@ public class ManagementPanel extends GUISettings {
         if (numberButtons == 0) {
         	updateOnFloorPanel();
         } else {
-        	int grid;
-            if (!freeze) {
+        	int grid = numberButtons;
+            if (!freeze && this.buttonArray[HOME_BUTTON].getActionListeners().length > 0) {
             	JButton cancel = new JButton("[ESC] ::: Cancel");
             	formatButton(cancel, BUTTON_HEIGHT * 4, BUTTON_HEIGHT, FONT_SIZE / 2, SETTINGS);
             	cancel.setBorder(null);
@@ -715,8 +715,6 @@ public class ManagementPanel extends GUISettings {
             	setButtonKey(cancel, KeyEvent.VK_ESCAPE, 0);
             	buttons.add(cancel);
             	grid = players.size() + 1;
-            } else {
-            	grid = numberButtons;
             }
             buttons.setLayout(new GridLayout(grid, 1));
             this.pane.add(buttons);
